@@ -135,7 +135,13 @@ const EcoRoute = () => {
     'visakhapatnam': { name: 'Visakhapatnam', display: 'Visakhapatnam, Andhra Pradesh, India', coordinates: { lat: 17.6868, lng: 83.2185 }, isIndian: true },
     'pimpri': { name: 'Pimpri-Chinchwad', display: 'Pimpri-Chinchwad, Maharashtra, India', coordinates: { lat: 18.6298, lng: 73.7997 }, isIndian: true },
     'patna': { name: 'Patna', display: 'Patna, Bihar, India', coordinates: { lat: 25.5941, lng: 85.1376 }, isIndian: true },
-    'vadodara': { name: 'Vadodara', display: 'Vadodara, Gujarat, India', coordinates: { lat: 22.3072, lng: 73.1812 }, isIndian: true }
+    'vadodara': { name: 'Vadodara', display: 'Vadodara, Gujarat, India', coordinates: { lat: 22.3072, lng: 73.1812 }, isIndian: true },// Hyderabad specific locations
+'hitech city': { name: 'HITEC City', display: 'HITEC City, Hyderabad, Telangana', coordinates: { lat: 17.4475, lng: 78.3667 }, isIndian: true },
+'gachibowli': { name: 'Gachibowli', display: 'Gachibowli, Hyderabad, Telangana', coordinates: { lat: 17.4399, lng: 78.3487 }, isIndian: true },
+'begumpet': { name: 'Begumpet', display: 'Begumpet, Hyderabad, Telangana', coordinates: { lat: 17.4339, lng: 78.4738 }, isIndian: true },
+'secunderabad': { name: 'Secunderabad', display: 'Secunderabad, Telangana', coordinates: { lat: 17.5040, lng: 78.4954 }, isIndian: true },
+'banjara hills': { name: 'Banjara Hills', display: 'Banjara Hills, Hyderabad, Telangana', coordinates: { lat: 17.4126, lng: 78.4482 }, isIndian: true },
+'jubilee hills': { name: 'Jubilee Hills', display: 'Jubilee Hills, Hyderabad, Telangana', coordinates: { lat: 17.4239, lng: 78.4738 }, isIndian: true }
   };
 
   // Function to search in fallback data
@@ -174,7 +180,7 @@ const EcoRoute = () => {
       // First try with India country filter for better local results
       let response = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?` +
-        `autocomplete=true&limit=5&country=IN&access_token=${MAPBOX_TOKEN}`
+       `autocomplete=true&limit=8&country=IN&types=poi,address,neighborhood,locality,place&access_token=${MAPBOX_TOKEN}`
       );
       
       if (!response.ok) {
@@ -187,7 +193,7 @@ const EcoRoute = () => {
       if (!data.features || data.features.length === 0) {
         response = await fetch(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?` +
-          `autocomplete=true&limit=5&access_token=${MAPBOX_TOKEN}`
+          `autocomplete=true&limit=8&types=poi,address,neighborhood,locality,place&access_token=${MAPBOX_TOKEN}`
         );
         data = await response.json();
       }
